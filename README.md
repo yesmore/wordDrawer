@@ -1,8 +1,8 @@
-![worddrawer](https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108292138756.png)
+![worddrawer](https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108301200714.png)
 
----
+![Github stars](https://img.shields.io/github/stars/yesmore/wordDrawer.svg)
 
-![Github stars](https://img.shields.io/github/stars/bai-23/italk-uniapp.svg)![Github downloads](https://img.shields.io/github/downloads/molunerfinn/PicGo/total.svg)
+![Github downloads](https://img.shields.io/github/downloads/yesmore/wordDrawer/total.svg)
 
 ### 应用概述
 

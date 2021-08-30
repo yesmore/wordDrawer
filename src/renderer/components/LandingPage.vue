@@ -55,7 +55,7 @@
           <!-- 空 -->
           <a-empty v-if="searchList === ''" 
                    :description="false"
-                   image="https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108292138756.png"
+                   image="https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108301200714.png"
                    :image-style="{
                      height: '70px',
                    }">
