@@ -1,8 +1,12 @@
-![worddrawer](https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108301200714.png)
+<div style="width:100%;margin: 0 auto">
+	<img src="https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108301200714.png"/>
+</div>
+<div style="width:100%;margin: 0 auto">
+	<img src="https://img.shields.io/github/stars/yesmore/wordDrawer.svg"/>
+	<br>
+	<img src="https://img.shields.io/github/downloads/yesmore/wordDrawer/total.svg"/>
+</div>
 
-![Github stars](https://img.shields.io/github/stars/yesmore/wordDrawer.svg)
-
-![Github downloads](https://img.shields.io/github/downloads/yesmore/wordDrawer/total.svg)
 
 ### 应用概述
 
