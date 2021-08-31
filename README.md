@@ -1,8 +1,9 @@
-![worddrawer](https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108301200714.png)
+<div align=center><img width="400" src="https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108301200714.png" alt="wordDrawer"/></div>
 
-![gh stars](https://img.shields.io/github/stars/yesmore/wordDrawer.svg)
-
-![ghdownloads](https://img.shields.io/github/downloads/yesmore/wordDrawer/total.svg)
+<div align=center>
+    <img src="https://img.shields.io/github/stars/yesmore/wordDrawer.svg" alt="wordDrawer"/>
+    <img src="https://img.shields.io/github/downloads/yesmore/wordDrawer/total.svg" alt="wordDrawer"/>
+</div>
 
 ## 应用概述
 
@@ -33,17 +34,13 @@ wordDrawer常用功能：
 
 Windows 用户请下载最新版本的 `exe` 文件。
 
-### macOS
-
-敬请期待！
-
-### Linux
-
-敬请期待！
+MacOS/Linux用户敬请期待。
 
 ## 应用截图
 
-![wordDrawer](https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108311112569.png)
+<div align=center><img width="400" height="250" src="https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108311112569.png" alt="wordDrawer"/></div>
+
+
 
 
 
@@ -63,7 +60,9 @@ Windows 用户请下载最新版本的 `exe` 文件。
 
 微信：
 
-![song](https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108311123027.jpg)
+<div align=center><img width="300" src="https://cdn.jsdelivr.net/gh/yesmore/img/imgs/202108311123027.jpg" alt="weChat"/></div>
+
+
 
 ## License
 
