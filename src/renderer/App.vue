@@ -11,5 +11,7 @@
 </script>
 
 <style>
-  /* CSS */
+  body {
+    background: #3f3c37
+  }
 </style>

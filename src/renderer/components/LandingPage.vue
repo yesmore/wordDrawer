@@ -1,5 +1,6 @@
 <template>
   <div id="wrapper">
+    <Header></Header>
     <a-row>
       <a-card
         class="main-card"
@@ -18,6 +19,7 @@
             :disabled="searchType === 'Hot' "
             @search="onSearch" 
             @change="onChange"
+            class="input-bar"
             size="large"/>
         
         <a-input-group compact v-else >
@@ -34,6 +36,7 @@
             @change="onChange"
             v-model="keyword"
             style="width: 100%" 
+            class="input-bar"
             :placeholder=placeholder  
             :rows="5"
             />
@@ -60,18 +63,17 @@
                      height: '70px',
                    }">
             <a-button type="dashed">
-              wordDrawer：开始探索吧！
+              <strong>开始探索吧 ヾ(^∀^)ﾉ</strong> 
             </a-button>
-            <a-divider />
-            <a-icon style="font-size: 24px" type="github" /><br>
-            <img src="https://img.shields.io/github/stars/bai-23/italk-uniapp.svg" alt="">
-            <img src="https://img.shields.io/github/downloads/molunerfinn/PicGo/total.svg" alt="">
+            <!-- <a-divider />
+            <img src="https://img.shields.io/github/stars/yesmore/wordDrawer.svg" alt="">
+            <img src="https://img.shields.io/github/downloads/yesmore/wordDrawer/total.svg" alt=""> -->
           </a-empty>
           
           <!-- 翻译&缩写 -->
           <div v-else-if="searchType !== 'Idiom' && searchType !== 'Hot' && searchType !== 'Kw' && searchType !== 'Abstract' && searchType !== 'Xhzd'"
                class="search-res">
-               <a-button style="float:right" class="tag-read" :data-clipboard-text="searchList" @click="copy" shape="round" size="small">copy</a-button>
+               <a-button style="float:right" class="tag-read" :data-clipboard-text="searchList" @click="copy" shape="round" size="small"><a-icon style="line-height: 28px" type="copy" /></a-button>
             {{ searchList }}  
           </div>
 
@@ -79,7 +81,7 @@
           <a-list v-if="searchType === 'Idiom'" :data-source="searchList">
             <a-list-item slot="renderItem" slot-scope="item">
               <a-list-item-meta :description="'译：'+item.explanation">
-                <a-button slot="title" style="float:right" class="tag-read" :data-clipboard-text="item.word" @click="copy" shape="round" size="small" >copy</a-button>
+                <a-button slot="title" style="float:right" class="tag-read" :data-clipboard-text="item.word" @click="copy" shape="round" size="small" ><a-icon style="line-height: 28px" type="copy" /></a-button>
                 <a slot="title" href="javascript:;;"><strong>{{ item.word }}</strong> （ {{ item.pinyin }}）</a>
               </a-list-item-meta>
               <a-divider type="vertical" />
@@ -91,7 +93,7 @@
 
           <!-- 新华字典 -->
           <div class="xhzd" v-if="searchType === 'Xhzd' && searchList !== ''" >
-            共查询到 <strong>{{searchList.length}}</strong> 条结果：
+            <span class="xhzd-len">共查询到 <strong>{{searchList.length}}</strong> 条结果：</span>
             <div style="margin: 10px 0"></div>
             <a-card v-for="item in searchList" :key="item.word"
                     :title="'《新华字典》：“'+item.word+'”'">
@@ -99,10 +101,10 @@
                 <template slot="description">
                   笔画：{{ item.strokes }}，部首：{{ item.radical }}
                   <a-divider />
-                  <a-button style="float:right" class="tag-read" :data-clipboard-text="item.explanation" @click="copy" shape="round" size="small">copy</a-button>
+                  <a-button style="float:right" class="tag-read" :data-clipboard-text="item.explanation" @click="copy" shape="round" size="small"><a-icon style="line-height: 28px" type="copy" /></a-button>
                   解释：{{ item.explanation || '无' }}
                   <a-divider />
-                  <a-button style="float:right" class="tag-read" :data-clipboard-text="item.more" @click="copy" shape="round" size="small">copy</a-button>
+                  <a-button style="float:right" class="tag-read" :data-clipboard-text="item.more" @click="copy" shape="round" size="small"><a-icon style="line-height: 28px" type="copy" /></a-button>
                   更多：{{ item.more || '无' }}
                 </template>
               </a-card-meta>
@@ -144,24 +146,29 @@
 
           <!-- 关键词 -->
           <div v-if="searchType === 'Kw' && searchList !== ''" class="search-res">
-            <a-button slot="title" style="float:right" class="tag-read" :data-clipboard-text="searchList" @click="copy" shape="round" size="small" >copy</a-button>
+            <a-button slot="title" style="float:right" class="tag-read" :data-clipboard-text="searchList" @click="copy" shape="round" size="small" ><a-icon style="line-height: 28px" type="copy" /></a-button>
             关键词：<strong>{{ searchList.join('，') }}</strong>
           </div>
 
           <!-- 摘要 -->
           <div v-if="searchType === 'Abstract' && searchList !== ''" class="search-res">
-            <a-button slot="title" style="float:right" class="tag-read" :data-clipboard-text="searchList" @click="copy" shape="round" size="small" >copy</a-button>
+            <a-button slot="title" style="float:right" class="tag-read" :data-clipboard-text="searchList" @click="copy" shape="round" size="small" ><a-icon style="line-height: 28px" type="copy" /></a-button>
             摘要：<strong>{{ searchList.join(`，`) }}</strong>
           </div>
         </div>
+        <Footer></Footer>
       </a-card>
+      
     </a-row>
+    
   </div>
 </template>
 
 <script>
   import infiniteScroll from 'vue-infinite-scroll'
   import Clipboard from 'clipboard'
+  import Header from './Header'
+  import Footer from './Footer'
   
   const clipboard = new Clipboard('.tag-read')
   // 防抖
@@ -183,7 +190,7 @@
   export default {
     directives: { infiniteScroll },
     name: 'landing-page',
-    components: {},
+    components: { Header, Footer },
     data () {
       return {
         clipboard,
@@ -239,13 +246,13 @@
             if (res.data.result.code === 200) {
               this.searchList = res.data.data.entries[0].explain
             } else {
-              this.$message.warning('换个词试试')
+              this.$message.warning('换个词试试', 1)
             }
             this.loading1 = false
           } else if (this.searchType === 'Abbr') {
             res = await this.$http.get('https://v2.alapi.cn/api/abbr?token=XRvwH8gtamy4uOga&abbr=' + this.keyword)
             if (res.data.code === 406) {
-              this.$message.warning('换个缩写试试')
+              this.$message.warning('换个缩写试试', 1)
             } else {
               this.searchList = res.data.data.explain
             }
@@ -255,7 +262,7 @@
             if (res.data.code === 200) {
               this.searchList = res.data.data
             } else {
-              this.$message.warning('请输入汉字')
+              this.$message.warning('请输入汉字', 1)
             }
             this.loading1 = false
           } else if (this.searchType === 'Idiom') {
@@ -263,7 +270,7 @@
             if (res.data.code === 200) {
               this.searchList = res.data.data
             } else {
-              this.$message.warning('换一个试试')
+              this.$message.warning('换一个试试', 1)
             }
             this.loading1 = false
           } else if (this.searchType === 'Kw') {
@@ -271,7 +278,7 @@
             if (res.data.code === 200) {
               this.searchList = res.data.data
             } else {
-              this.$message.warning('提取失败')
+              this.$message.warning('提取失败', 1)
             }
             this.loading1 = false
           } else if (this.searchType === 'Abstract') {
@@ -279,7 +286,7 @@
             if (res.data.code === 200) {
               this.searchList = res.data.data
             } else {
-              this.$message.warning('生成失败')
+              this.$message.warning('生成失败', 1)
             }
             this.loading1 = false
           }
@@ -302,10 +309,10 @@
           this.placeholder = '请输入翻译内容，按Enter查询'
         } else if (key === 'Abbr') {
           this.searchType = 'Abbr'
-          this.placeholder = '请输入缩写，例如“yyds”、“awsl”、“nmsl”...'
+          this.placeholder = '请输入缩写字母，例如“yyds”、“awsl”、“nmsl”...'
         } else if (key === 'Xhzd') {
           this.searchType = 'Xhzd'
-          this.placeholder = '请输入汉字'
+          this.placeholder = '请输入汉字，按Enter查询'
         } else if (key === 'Idiom') {
           this.searchType = 'Idiom'
           this.searchList = []
@@ -334,19 +341,19 @@
         if (res.data.code === 200) {
           this.searchList = res.data.data
         } else {
-          this.$message.warning('出错了')
+          this.$message.warning('出错了', 1)
         }
         this.loading1 = false
       },
       handleInfiniteOnLoad () {
         const data = this.searchList
         if (data.length > 9) {
-          // this.$message.warning('换个词试试')
+          // this.$message.warning('换个词试试', 1)
           this.busy = true
         }
       },
       openNotificationWithIcon (type) {
-        this.$message.warning('请输入内容')
+        this.$message.warning('请输入内容', 1)
       },
       copy () {
         this.clipboard.on('success', e => {
@@ -365,7 +372,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
 .demo-infinite-container {
   border-radius: 4px;
   /* overflow: auto; */
@@ -375,18 +382,51 @@
 }
 .demo-loading-container {
   position: absolute;
-  margin-top: 120px;
+  margin-top: 160px;
   width: 100%;
   text-align: center;
 }
 .search-res {
   font-size: 20px;
+  color: rgb(230, 230, 230);
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.main-card {
-  background: #000;
+.ant-card {
+  background: #3f3c37!important;
+  border: none!important;
+  border-radius: 0px!important;
 }
 .xhzd .ant-card-head {
-  background: rgba(214, 213, 213, 0.445);
+  background: rgb(80, 78, 78)!important;
+}
+.ant-input-search-icon,
+.ant-tabs-tab-next-icon,
+.ant-tabs-tab-prev-icon-target,
+.xhzd-len,
+.ant-card-head-title,
+.ant-list-item-meta-title a,
+.ant-list-item-meta-description,
+.ant-card-meta-title,
+.ant-card-meta-description,
+.ant-divider-inner-text,
+.ant-tabs-tab {
+  color: rgb(230, 230, 230)!important;
+}
+.ant-tabs-tab-active {
+  color: rgb(74, 201, 218)!important;
+}
+.ant-input {
+  background: rgb(80, 78, 78) !important;
+  color: rgb(230, 230, 230)!important;
+  border: none!important;
+  border-radius: 0px!important;
+}
+.ant-divider {
+  // background: rgba(255, 255, 255, 0.178)!important;
+  color: rgba(255, 255, 255, 0.178)!important;
+}
+.ant-btn-dashed {
+  background: rgba(255, 255, 255, 0.178)!important;
+  color: rgb(230, 230, 230)!important;
 }
 </style>
